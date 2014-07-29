@@ -7,10 +7,11 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="<?php printlink(); ?>"><img src="<?php printlink("img/logo.png"); ?>" alt="Mob Your Life"/></a>
+	  <a class="navbar-brand" href="<?php printlink(); ?>">Nome do site</a>
 	  <ul class="nav navbar-nav">
-		<li<?php activelink("como-funciona"); ?>><a href="<?php printlink("como-funciona"); ?>">Como Funciona</a></li>
-		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("duvidas-frequentes"); ?>">Dúvidas Frequentes</a></li>
+		<li<?php activelink("como-funciona"); ?>><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
+		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("fotos"); ?>">Fotos</a></li>
+		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("videos"); ?>">Vídeos</a></li>
 		<li<?php activelink("contato"); ?>><a href="<?php printlink("contato"); ?>">Contato</a></li>
       </ul>
 	</div>

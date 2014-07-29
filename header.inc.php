@@ -6,7 +6,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php printlink("favicon.ico"); ?>">
 
-    <title>Mob Your Life</title>
+    <title>Nome do site</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php printlink("css/bootstrap.min.css"); ?>" rel="stylesheet">

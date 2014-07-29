@@ -5,16 +5,18 @@
 		</div>
 		
 		<ul class="bs-docs-footer-links muted">
-			<li><a href="http://www.fmobstudio.com.br" target="_blank">F&gt;MOB STUDIO</a></li>
+			<li><a href="<?php printlink(); ?>">Início</a></li>
 			<li>&middot;</li>
-			<li><a href="<?php printlink("como-funciona"); ?>">Como Funciona</a></li>
+			<li><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
 			<li>&middot;</li>
-			<li><a href="<?php printlink("duvidas-frequentes"); ?>">Dúvidas Frequentes</a></li>
+			<li><a href="<?php printlink("fotos"); ?>">Fotos</a></li>
+			<li>&middot;</li>
+			<li><a href="<?php printlink("videos"); ?>">Vídeos</a></li>
 			<li>&middot;</li>
 			<li><a href="<?php printlink("contato"); ?>">Contato</a></li>
 		</ul>
 		
-		<p>Mob Your Life &copy; 2014 - Todos os direitos reservados</p>
+		<p><strong>Produzido por</strong> Mob Your Life &copy; 2014 - Todos os direitos reservados</p>
 	</div>
 </footer>
 
