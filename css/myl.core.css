@@ -1,0 +1,10 @@
+@import "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css";
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}

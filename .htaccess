@@ -1,0 +1,8 @@
+Options -Indexes
+ErrorDocument 403 /myl/403
+ErrorDocument 404 /myl/404
+ErrorDocument 500 /myl/500
+ErrorDocument 501 /myl/501
+ErrorDocument 502 /myl/502
+ErrorDocument 503 /myl/503
+ErrorDocument 504 /myl/504
