@@ -8,7 +8,7 @@ $app_secret = "2884c251aa55fdd1b2ef9147a48cde98";
 $website_ssl = false;
 $website_proto = ($website_ssl == true ? "https" : "http");
 $website_host = $_SERVER["HTTP_HOST"];
-$website_root = "/myl";
+$website_root = "/chest";
 
 /* Dados de conexão ao banco de dados. */
 $mysql_hostname = "localhost";
