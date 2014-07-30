@@ -41,14 +41,14 @@ require_once "core.inc.php";
 													  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 														- Padrão - <span class="caret"></span>
 													  </button>
-													  <ul class="dropdown-menu" role="menu">
-														<li><a href="#">- Padrão -</a></li>
+													  <ul id="theme-list" class="dropdown-menu" role="menu">
+														<li><a href="#" data-theme="">- Padrão -</a></li>
 														<?php
 														$themes_list = get_themes_list();
 														
 														foreach ($themes_list as $theme_id => $theme_name)
 														{
-															printf("<li><a href=\"#\">%s</a></li>", $theme_name);
+															printf("<li><a href=\"#\" data-theme=\"%s\">%s</a></li>", $theme_name, $theme_name);
 														}
 														
 														?>
