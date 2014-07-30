@@ -39,6 +39,7 @@ function get_page_info($page_fbid)
 	if (mysqli_num_rows($res) != 0)
 	{
 		$row = mysqli_fetch_assoc($res);
+		$info['fbid'] = $page_fbid;
 		$info['is_fanpage'] = $row['is_fanpage'];
 		$info['page_name'] = $row['page_name'];
 	}

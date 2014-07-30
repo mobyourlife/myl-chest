@@ -1,9 +1,5 @@
 <footer class="bs-docs-footer" role="contentinfo">
 	<div class="container">
-		<div class="bs-docs-social">
-			<div class="fb-like-box" data-href="https://www.facebook.com/pages/Mob-Your-Face/1446731825581145" data-width="400" data-height="210" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
-		</div>
-		
 		<ul class="bs-docs-footer-links muted">
 			<li><a href="<?php printlink(); ?>">Início</a></li>
 			<li>&middot;</li>
