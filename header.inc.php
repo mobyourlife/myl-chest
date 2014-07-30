@@ -6,7 +6,7 @@
     <meta name="author" content="">
     <link rel="icon" href="<?php printlink("favicon.ico"); ?>">
 
-    <title>Nome do site</title>
+    <title><?php printf($page_info['page_name']); ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php printlink("css/bootstrap.min.css"); ?>" rel="stylesheet">

@@ -32,4 +32,7 @@ if (!isset($page_fbid))
 	die();
 }
 
+/* Consulta as informações da página. */
+$page_info = get_page_info($page_fbid);
+
 ?>

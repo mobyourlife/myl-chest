@@ -7,7 +7,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	  </button>
-	  <a class="navbar-brand" href="<?php printlink(); ?>">Nome do site</a>
+	  <a class="navbar-brand" href="<?php printlink(); ?>"><?php printf($page_info['page_name']); ?></a>
 	  <ul class="nav navbar-nav">
 		<li<?php activelink("como-funciona"); ?>><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
 		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("fotos"); ?>">Fotos</a></li>

@@ -10,7 +10,7 @@ require_once "core.inc.php";
 
     <div class="jumbotron">
       <div class="container">
-        <h1>Nome do site</h1>
+        <h1><?php printf($page_info['page_name']); ?></h1>
         <p>Descrição</p>
       </div>
     </div>
