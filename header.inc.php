@@ -16,6 +16,7 @@
 
     <!-- Custom styles for this template -->
     <link href="<?php printlink("css/myl.core.css"); ?>" rel="stylesheet">
+    <link href="<?php printlink("css/myl.cpanel.css"); ?>" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<?php printlink("js/ie10-viewport-bug-workaround.js"); ?>"></script>

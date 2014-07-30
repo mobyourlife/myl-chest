@@ -49,4 +49,25 @@ function get_page_info($page_fbid)
 	return $info;
 }
 
+function get_themes_list()
+{
+	$db = db_conectar();
+	
+	$sql = "SELECT theme_id, theme_name FROM myl_themes ORDER BY theme_name ASC;";
+	$res = mysqli_query($db, $sql);
+	$themes = array();
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($res))
+		{
+			$themes[$row['theme_id']] = $row['theme_name'];
+		}
+	}
+	
+	mysqli_close($db);
+	
+	return $themes;
+}
+
 ?>
