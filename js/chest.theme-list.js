@@ -1,23 +1,23 @@
-var theme_stylesheet = null;
-
 $('#theme-list > li > a').click(function() {
-	var theme = $(this).data('theme');
+	var $theme = $(this).data('theme');
+	var $lnk = $('link#theme-test');
 	
-	if (theme_stylesheet == null)
+	if ($lnk.length == 0)
 	{
-		var lnk = document.createElement('link');
-		lnk.href = 'css/bootstrap.min.css';
-		lnk.rel = 'stylesheet';
-		lnk.type = 'text/css';
-		(document.head || document.documentElement).appendChild(lnk);
+		$lnk = $('<link>');
+		$lnk.attr('id', 'theme-test');
+		$lnk.attr('rel', 'stylesheet');
+		$lnk.attr('type', 'text/css');
+		$('head').append($lnk);
 	}
 	
-	if (theme.length != 0)
+	if ($theme.length != 0)
 	{
-		lnk.href = 'themes/' + theme + '/bootstrap.min.css';
+		$lnk.attr('href', 'themes/' + $theme + '/bootstrap.min.css');
 	}
 	else
 	{
-		lnk.href = 'css/bootstrap.min.css';
+		$lnk.attr('href', 'css/bootstrap.min.css');
 	}
+	
 });
