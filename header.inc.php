@@ -15,6 +15,14 @@
 	<link href="<?php printlink("css/docs.min.css"); ?>" rel="stylesheet">
 
     <!-- Custom styles for this template -->
+	<?php
+	if (isset($page_info) && isset($page_info['theme_name']) && $page_info['theme_name'] != null)
+	{
+		?>
+		<link href="<?php printlink(sprintf("themes/%s/bootstrap.min.css", $page_info['theme_name'])); ?>" rel="stylesheet">
+		<?php
+	}
+	?>
     <link href="<?php printlink("css/myl.core.css"); ?>" rel="stylesheet">
     <link href="<?php printlink("css/myl.cpanel.css"); ?>" rel="stylesheet">
 

@@ -32,7 +32,7 @@ function get_page_info($page_fbid)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT is_fanpage, page_name FROM myl_profiles WHERE admin_uid = %s;", $page_fbid);
+	$sql = sprintf("SELECT p.is_fanpage, p.page_name, t.theme_name FROM myl_profiles AS p LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE admin_uid = %s;", $page_fbid);
 	$res = mysqli_query($db, $sql);
 	$info = array();
 	
@@ -42,6 +42,7 @@ function get_page_info($page_fbid)
 		$info['fbid'] = $page_fbid;
 		$info['is_fanpage'] = $row['is_fanpage'];
 		$info['page_name'] = $row['page_name'];
+		$info['theme_name'] = $row['theme_name'];
 	}
 	
 	mysqli_close($db);
