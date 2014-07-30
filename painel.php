@@ -38,17 +38,17 @@ require_once "core.inc.php";
 												<td>Tema:</td>
 												<td>
 													<div class="btn-group">
-													  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+													  <button id="theme-current" data-theme-id="0" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 														- Padrão - <span class="caret"></span>
 													  </button>
 													  <ul id="theme-list" class="dropdown-menu" role="menu">
-														<li><a href="#" data-theme="">- Padrão -</a></li>
+														<li><a href="#" data-theme-id="0" data-theme="">- Padrão -</a></li>
 														<?php
 														$themes_list = get_themes_list();
 														
 														foreach ($themes_list as $theme_id => $theme_name)
 														{
-															printf("<li><a href=\"#\" data-theme=\"%s\">%s</a></li>", $theme_name, $theme_name);
+															printf("<li><a href=\"#\" data-theme-id=\"%d\" data-theme=\"%s\">%s</a></li>", $theme_id, $theme_name, $theme_name);
 														}
 														
 														?>
@@ -58,6 +58,10 @@ require_once "core.inc.php";
 											</tr>
 										</tbody>
 									</table>
+
+									<div class="center">
+										<button id="btn-salvar-painel" class="btn btn-lg btn-info" data-action="<?php printlink("salvar-painel"); ?>"><span class="fa fa-save jump-5"></span> Salvar</button>
+									</div>
 								</div>
 							</div>
 						</div>

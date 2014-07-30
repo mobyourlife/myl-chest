@@ -70,4 +70,14 @@ function get_themes_list()
 	return $themes;
 }
 
+function salvar_tema($page_fbid, $theme_id)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("UPDATE myl_profiles SET theme_id = %s WHERE admin_uid = %s;", (($theme_id != 0) ? "$theme_id" : "NULL"), $page_fbid);
+	mysqli_query($db, $sql);
+	
+	mysqli_close($db);
+}
+
 ?>
