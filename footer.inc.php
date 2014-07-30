@@ -12,7 +12,7 @@
 			<li><a href="<?php printlink("contato"); ?>">Contato</a></li>
 		</ul>
 		
-		<p><strong>Produzido por</strong> Mob Your Life &copy; 2014 - Todos os direitos reservados</p>
+		<p>Produzido por <a href="http://www.mobyourlife.com.br" target="_blank">Mob Your Life</a> &copy; 2014 - Todos os direitos reservados</p>
 	</div>
 </footer>
 
