@@ -57,9 +57,21 @@ if (!isset($fb_session))
 /* Get info about logged user. */
 if (isset($fb_session))
 {
-	$request = new FacebookRequest($fb_session, 'GET', '/me');
-	$response = $request->execute();
-	$fb_profile = $response->getGraphObject();
+	try
+	{
+		$request = new FacebookRequest($fb_session, 'GET', '/me');
+		$response = $request->execute();
+		$fb_profile = $response->getGraphObject();
+	}
+	catch (FacebookSDKException $ex)
+	{
+		foreach ($_SESSION as $key => $value)
+		{
+			unset($_SESSION[$key]);
+		}
+		
+		unset($fb_session);
+	}
 }
 
 function fb_get_accounts()
