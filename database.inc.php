@@ -1,5 +1,11 @@
 <?php
 
+use Facebook\FacebookRequest;
+use Facebook\FacebookSession;
+use Facebook\FacebookJavaScriptLoginHelper;
+use Facebook\Entities\AccessToken;
+use Facebook\FacebookSDKException;
+
 /* Conecta-se ao banco de dados. */
 function db_conectar()
 {
@@ -79,6 +85,61 @@ function salvar_tema($page_fbid, $theme_id)
 	mysqli_query($db, $sql);
 	
 	mysqli_close($db);
+}
+
+function get_cover($page_fbid)
+{
+	$cover = array();
+	$cover['image_fbid'] = null;
+	$cover['source_url'] = null;
+	$cover['is_downloaded'] = false;
+	
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT image_fbid, source_url, is_downloaded FROM myl_covers WHERE page_fbid = %s ORDER BY updated_time DESC LIMIT 1;", $page_fbid);
+	$res = mysqli_query($db, $sql);
+	
+	if (mysqli_num_rows($res) == 1)
+	{
+		$row = mysqli_fetch_assoc($res);
+		$cover['image_fbid'] = $row['image_fbid'];
+		$cover['source_url'] = $row['source_url'];
+		$cover['is_downloaded'] = $row['is_downloaded'];
+	}
+	else
+	{
+		if (isset($_SESSION['FB_ACCESS_TOKEN']))
+		{
+			$session = new FacebookSession($_SESSION['FB_ACCESS_TOKEN']);
+			
+			/* consulta o id da capa */
+			$request = new FacebookRequest($session, 'GET', sprintf('/%s?fields=cover', $page_fbid));
+			$response = $request->execute();
+			$object = $response->getGraphObject();
+			
+			/* pega o id da capa */
+			$cover['image_fbid'] = $object->getProperty('cover')->getProperty('id');
+			$cover_offset_y = $object->getProperty('cover')->getProperty('offset_y');
+			$updated_time = tosqldate($object->getProperty('updated_time'));
+			
+			/* consulta mais detalhes sobre a capa */
+			$request = new FacebookRequest($session, 'GET', sprintf('/%s?fields=images,updated_time', $cover['image_fbid']));
+			$response = $request->execute();
+			$object = $response->getGraphObject();
+			
+			/* atribui os dados da capa */
+			$cover_details = $object->getProperty('images')->asArray()[0];
+			$cover['source_url'] = $cover_details->source;
+			
+			/* insere a imagem no banco de dados */
+			$sql = sprintf("INSERT INTO myl_covers (image_fbid, page_fbid, updated_time, source_url, width, height, offset_y, is_downloaded) VALUES(%s, %s, '%s', '%s', %d, %d, %d, %d) ON DUPLICATE KEY UPDATE updated_time = '%s';"
+						, $cover['image_fbid'], $page_fbid, $updated_time, $cover['source_url'], $cover_details->width, $cover_details->height, $cover_offset_y, 0, $updated_time);
+			mysqli_query($db, $sql);
+		}
+	}
+	
+	mysqli_close($db);
+	return $cover;
 }
 
 ?>

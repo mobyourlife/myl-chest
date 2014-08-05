@@ -24,6 +24,11 @@ function fromsqldate($date)
 	return date("d/m/Y H:i:s", strtotime($date));
 }
 
+function tosqldate($date)
+{
+	return date("Y-m-d H:i:s", strtotime($date));
+}
+
 function remove_accents($string)
 {
     if ( !preg_match('/[\x80-\xff]/', $string) )
