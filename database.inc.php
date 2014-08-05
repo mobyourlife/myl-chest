@@ -142,4 +142,14 @@ function get_cover($page_fbid)
 	return $cover;
 }
 
+function set_cover_downloaded($cover_id)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("UPDATE myl_covers SET is_downloaded = %d WHERE image_fbid = %s;", 1, $cover_id);
+	mysqli_query($db, $sql);
+	
+	mysqli_close($db);
+}
+
 ?>

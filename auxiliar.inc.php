@@ -136,4 +136,38 @@ function remove_accents($string)
     return $string;
 }
 
+function downloadFile($url, $path)
+{
+	$newfname = $path;
+	$file = fopen ($url, "rb");
+	$ret = false;
+	
+	if ($file)
+	{
+		$newf = fopen ($newfname, "wb");
+
+		if ($newf)
+		{
+			while(!feof($file))
+			{
+				fwrite($newf, fread($file, (1024 * 8)), (1024 * 8));
+			}
+			
+			$ret = true;
+		}
+	}
+
+	if ($file)
+	{
+		fclose($file);
+	}
+
+	if ($newf)
+	{
+		fclose($newf);
+	}
+	
+	return $ret;
+}
+
 ?>
