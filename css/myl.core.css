@@ -16,4 +16,5 @@ body {
 .jumbotron {
 	background-size: cover;
 	height: 350px;
+	color: #fff;
 }
