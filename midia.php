@@ -38,7 +38,7 @@ $midia_items = get_midia_items($page_info['fbid'], $midia_params['categoria']);
 
 			<?php foreach ($midia_items as $item) { ?>
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
+                <a class="thumbnail" href="<?php printf($item['full_source_url']); ?>">
 					<img class="img-responsive" src="<?php printf($item['thumb_source_url']); ?>" alt="Clique para ampliar"/>
                 </a>
             </div>
@@ -52,6 +52,8 @@ $midia_items = get_midia_items($page_info['fbid'], $midia_params['categoria']);
 		</div>
 		<?php } ?>
 	</div>
+	
+	<div id="full-screen"></div>
 	
 	<?php require "footer.inc.php"; ?>
   </body>

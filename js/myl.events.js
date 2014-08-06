@@ -21,3 +21,12 @@ $('#mail-form').submit(function() {
 
 	return false;
 });
+
+$('.thumbnail').click(function() {
+	$('#full-screen').css('height', $(window).height()).css('display', 'inline').css('background-image', 'url(' + $(this).attr('href') + ')');
+	return false;
+});
+
+$('#full-screen').click(function () {
+	$('#full-screen').css('display', 'none');
+});

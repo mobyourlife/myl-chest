@@ -199,7 +199,7 @@ function get_midia_items($page_fbid, $nome_seo)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT photo_id, thumbs_url FROM myl_fb_photos WHERE album_id IN (SELECT album_id FROM myl_fb_albums WHERE page_fbid  = %s AND '%s' = 'fotos') ORDER BY photo_id DESC;", $page_fbid, $nome_seo);
+	$sql = sprintf("SELECT photo_id, thumbs_url, source_url FROM myl_fb_photos WHERE album_id IN (SELECT album_id FROM myl_fb_albums WHERE page_fbid  = %s AND '%s' = 'fotos') ORDER BY photo_id DESC;", $page_fbid, $nome_seo);
 	$res = mysqli_query($db, $sql);
 	$items = array();
 	
@@ -210,6 +210,7 @@ function get_midia_items($page_fbid, $nome_seo)
 			$i = array();
 			$i['thumb_source_url'] = $row['thumbs_url'];
 			$i['thumb_is_downloaded'] = false;
+			$i['full_source_url'] = $row['source_url'];
 		
 			$items[] = $i;
 		}
