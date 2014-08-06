@@ -38,7 +38,7 @@ function get_page_info($page_fbid)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT p.is_fanpage, p.page_name, t.theme_name FROM myl_accounts AS a INNER JOIN myl_profiles AS p ON p.admin_uid = a.admin_uid LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE a.page_fbid = %s;", $page_fbid);
+	$sql = sprintf("SELECT p.is_fanpage, a.admin_name AS page_name, t.theme_name FROM myl_accounts AS a INNER JOIN myl_profiles AS p ON p.admin_uid = a.admin_uid LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE a.page_fbid = %s;", $page_fbid);
 	$res = mysqli_query($db, $sql);
 	$info = array();
 	$info['fbid'] = $page_fbid;
@@ -121,7 +121,7 @@ function get_cover($page_fbid)
 			$object = $response->getGraphObject();
 			
 			/* pega o id da capa */
-			$cover['image_fbid'] = $object->getProperty('cover')->getProperty('id');
+			$cover['image_fbid'] = $object->getProperty('cover')->getProperty('cover_id');
 			$cover_offset_y = $object->getProperty('cover')->getProperty('offset_y');
 			$updated_time = tosqldate($object->getProperty('updated_time'));
 			
