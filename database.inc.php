@@ -192,4 +192,29 @@ function get_categorias($page_fbid)
 	return $categorias;
 }
 
+function get_midia_items($page_fbid, $nome_seo)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT thumb_source_url, thumb_is_downloaded FROM myl_midia WHERE id_categoria = (SELECT id_categoria FROM myl_categorias WHERE page_fbid = %s AND nome_seo = '%s') ORDER BY updated_time DESC;", $page_fbid, $nome_seo);
+	$res = mysqli_query($db, $sql);
+	$items = array();
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($res))
+		{
+			$i = array();
+			$i['thumb_source_url'] = $row['thumb_source_url'];
+			$i['thumb_is_downloaded'] = $row['thumb_is_downloaded'];
+		
+			$items[] = $i;
+		}
+	}
+	
+	mysqli_close($db);
+	
+	return $items;
+}
+
 ?>
