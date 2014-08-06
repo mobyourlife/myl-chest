@@ -18,3 +18,7 @@ body {
 	height: 350px;
 	color: #fff;
 }
+
+.thumbnail {
+	height: 250px;
+}
