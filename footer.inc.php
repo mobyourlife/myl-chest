@@ -27,3 +27,4 @@
 <script src="<?php printlink("js/facebook.login.js"); ?>"></script>
 <script src="<?php printlink("js/myl.events.js"); ?>"></script>
 <script src="<?php printlink("js/chest.painel.js"); ?>"></script>
+<script type="text/javascript">$('body').data('url-painel', '<?php printlink("painel"); ?>');</script>

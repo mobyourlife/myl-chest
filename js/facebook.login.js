@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
 $('.fb-login').click(function() {
 	FB.login(function(response) {
 		if (response.authResponse) {
-			location.href = './painel';
+			location.href = $('body').data('url-painel');
 		}
 	});
 });
