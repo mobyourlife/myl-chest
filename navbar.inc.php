@@ -10,8 +10,9 @@
 	  <a class="navbar-brand" href="<?php printlink(); ?>"><?php printf($page_info['page_name']); ?></a>
 	  <ul class="nav navbar-nav">
 		<li<?php activelink("como-funciona"); ?>><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
-		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("fotos"); ?>">Fotos</a></li>
-		<li<?php activelink("duvidas-frequentes"); ?>><a href="<?php printlink("videos"); ?>">Vídeos</a></li>
+		<?php foreach ($page_categorias as $nome_seo => $descricao) { ?>
+		<li<?php activelink("midia/" . $nome_seo); ?>><a href="<?php printlink("midia/" . $nome_seo); ?>"><?php print($descricao); ?></a></li>
+		<?php } ?>
 		<li<?php activelink("contato"); ?>><a href="<?php printlink("contato"); ?>">Contato</a></li>
       </ul>
 	</div>

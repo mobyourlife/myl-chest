@@ -35,4 +35,7 @@ if (!isset($page_fbid))
 /* Consulta as informações da página. */
 $page_info = get_page_info($page_fbid);
 
+/* Consulta as categorias de mídia. */
+$page_categorias = get_categorias($page_fbid);
+
 ?>

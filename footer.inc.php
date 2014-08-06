@@ -4,10 +4,10 @@
 			<li><a href="<?php printlink(); ?>">Início</a></li>
 			<li>&middot;</li>
 			<li><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
+			<?php foreach ($page_categorias as $nome_seo => $descricao) { ?>
 			<li>&middot;</li>
-			<li><a href="<?php printlink("fotos"); ?>">Fotos</a></li>
-			<li>&middot;</li>
-			<li><a href="<?php printlink("videos"); ?>">Vídeos</a></li>
+			<li><a href="<?php printlink("midia/" . $nome_seo); ?>"><?php print($descricao); ?></a></li>
+			<?php } ?>
 			<li>&middot;</li>
 			<li><a href="<?php printlink("contato"); ?>">Contato</a></li>
 		</ul>

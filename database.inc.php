@@ -171,4 +171,25 @@ function get_email_admin($admin_uid)
 	return $admin_email;
 }
 
+function get_categorias($page_fbid)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT nome_seo, nome_categoria FROM myl_categorias WHERE page_fbid = %s ORDER BY nome_categoria ASC;", $page_fbid);
+	$res = mysqli_query($db, $sql);
+	$categorias = array();
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		while ($row = mysqli_fetch_assoc($res))
+		{
+			$categorias[$row['nome_seo']] = $row['nome_categoria'];
+		}
+	}
+	
+	mysqli_close($db);
+	
+	return $categorias;
+}
+
 ?>
