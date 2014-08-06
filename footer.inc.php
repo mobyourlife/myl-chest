@@ -2,8 +2,6 @@
 	<div class="container">
 		<ul class="bs-docs-footer-links muted">
 			<li><a href="<?php printlink(); ?>">Início</a></li>
-			<li>&middot;</li>
-			<li><a href="<?php printlink("sobre"); ?>">Sobre</a></li>
 			<?php foreach ($page_categorias as $nome_seo => $descricao) { ?>
 			<li>&middot;</li>
 			<li><a href="<?php printlink("midia/" . $nome_seo); ?>"><?php print($descricao); ?></a></li>
