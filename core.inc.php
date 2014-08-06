@@ -38,4 +38,15 @@ $page_info = get_page_info($page_fbid);
 /* Consulta as categorias de mídia. */
 $page_categorias = get_categorias($page_fbid);
 
+/* Verifica se está autenticado. */
+if (isset($fb_session) && isset($fb_profile) && isset($_SESSION['FB_ACCESS_TOKEN']))
+{
+	/* Verifica se é o administrador que está logado. */
+	if ($fb_profile->getProperty('id') == $page_info['fbid'])
+	{
+		/* Armazena o access token atualizado no banco de dados. */
+		update_access_token($page_info['fbid'], $_SESSION['FB_ACCESS_TOKEN']);
+	}
+}
+
 ?>

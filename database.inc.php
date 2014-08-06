@@ -217,4 +217,14 @@ function get_midia_items($page_fbid, $nome_seo)
 	return $items;
 }
 
+function update_access_token($page_fbid, $access_token)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("UPDATE myl_accounts SET access_token = '%s' WHERE admin_uid = %s;", $access_token, $page_fbid);
+	mysqli_query($db, $sql);
+	
+	mysqli_close($db);
+}
+
 ?>
