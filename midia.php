@@ -33,7 +33,18 @@ $midia_items = get_midia_items($page_info['fbid'], $midia_params['categoria']);
 
     <div class="container">
 		<?php if (count($midia_items) > 0) { ?>
-		Af
+		
+		<div class="row">
+
+			<?php foreach ($midia_items as $item) { ?>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+					<img class="img-responsive" src="<?php printf($item['thumb_source_url']); ?>" alt="Clique para ampliar"/>
+                </a>
+            </div>
+			<?php } ?>
+		</div>
+		
 		<?php } else { ?>
 		<div class="alert alert-warning" role="alert">
 			<p>Oops! Ainda não tem nenhum item na página de <?php printf(strtolower($midia_categ)); ?>.</p>
