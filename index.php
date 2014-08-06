@@ -16,7 +16,7 @@ require_once "core.inc.php";
     </div>
 
     <div class="container">
-		Linha do tempo.
+		As postagens na linha do tempo serão exibidas aqui.
 	</div>
 	
 	<?php require "footer.inc.php"; ?>
