@@ -38,14 +38,17 @@ function get_page_info($page_fbid)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT p.is_fanpage, p.page_name, t.theme_name FROM myl_profiles AS p LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE admin_uid = %s;", $page_fbid);
+	$sql = sprintf("SELECT p.is_fanpage, p.page_name, t.theme_name FROM myl_accounts AS a INNER JOIN myl_profiles AS p ON p.admin_uid = a.admin_uid LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE a.page_fbid = %s;", $page_fbid);
 	$res = mysqli_query($db, $sql);
 	$info = array();
+	$info['fbid'] = $page_fbid;
+	$info['is_fanpage'] = false;
+	$info['page_name'] = 'Nova Página';
+	$info['theme_name'] = null;
 	
 	if (mysqli_num_rows($res) != 0)
 	{
 		$row = mysqli_fetch_assoc($res);
-		$info['fbid'] = $page_fbid;
 		$info['is_fanpage'] = $row['is_fanpage'];
 		$info['page_name'] = $row['page_name'];
 		$info['theme_name'] = $row['theme_name'];
