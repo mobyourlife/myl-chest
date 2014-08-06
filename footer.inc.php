@@ -25,4 +25,5 @@
 <script src="<?php printlink("js/bootstrap.min.js"); ?>"></script>
 <script src="<?php printlink("js/facebook.sdk.js"); ?>"></script>
 <script src="<?php printlink("js/facebook.login.js"); ?>"></script>
+<script src="<?php printlink("js/myl.events.js"); ?>"></script>
 <script src="<?php printlink("js/chest.painel.js"); ?>"></script>

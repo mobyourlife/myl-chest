@@ -1,20 +1,24 @@
 <?php
 require_once "core.inc.php";
 
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$mensagem = $_POST['mensagem'];
-
 $enviado = false;
 
-$headers = "MIME-Version: 1.1\r\n";
-$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
-$headers .= "From: " . $email . "\r\n";
-$headers .= "Return-Path: " . $email . "\r\n"; // return-path
-
-if (mail($email_suporte, "Mensagem de suporte do site", $mensagem, $headers, "-r".$email))
+if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['mensagem']))
 {
-	$enviado = true;
+	$nome = $_POST['nome'];
+	$email = $_POST['email'];
+	$mensagem = $_POST['mensagem'];
+	$email_admin = get_email_admin($page_info['fbid']);
+
+	$headers = "MIME-Version: 1.1\r\n";
+	$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+	$headers .= "From: " . $email . "\r\n";
+	$headers .= "Return-Path: " . $email . "\r\n"; // return-path
+
+	if (mail($email_admin, "Mob Your Life - Mensagem do site", $mensagem, $headers, "-r".$email))
+	{
+		$enviado = true;
+	}
 }
 
 $ret = array(

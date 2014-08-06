@@ -152,4 +152,23 @@ function set_cover_downloaded($cover_id)
 	mysqli_close($db);
 }
 
+function get_email_admin($admin_uid)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT admin_email FROM myl_accounts WHERE admin_uid = %s;", $admin_uid);
+	$res = mysqli_query($db, $sql);
+	$admin_email = null;
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		$row = mysqli_fetch_assoc($res);
+		$admin_email = $row['admin_email'];
+	}
+	
+	mysqli_close($db);
+	
+	return $admin_email;
+}
+
 ?>

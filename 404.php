@@ -8,7 +8,7 @@ require_once "core.inc.php";
 
     <?php require "navbar.inc.php"; ?>
 
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-image: url('<?php printlink("image?id=cover"); ?>'); ">
       <div class="container">
         <h1>Oops!</h1>
         <p>Parece que houve algum mal entendido!</p>
