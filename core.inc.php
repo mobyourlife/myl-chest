@@ -42,10 +42,26 @@ $page_categorias = get_categorias($page_fbid);
 if (isset($fb_session) && isset($fb_profile) && isset($_SESSION['FB_ACCESS_TOKEN']))
 {
 	/* Verifica se é o administrador que está logado. */
-	if ($fb_profile->getProperty('id') == $page_info['fbid'])
+	if ($fb_profile->getProperty('id') == $page_info['admin_uid'])
 	{
 		/* Armazena o access token atualizado no banco de dados. */
 		update_access_token($page_info['fbid'], $_SESSION['FB_ACCESS_TOKEN']);
+	
+		/* Verifica se é uma fanpage. */
+		$type = get_account_type($fb_profile->getProperty('id'));
+		if ($type == "fanpage")
+		{
+			$fbid = get_page_fbid($fb_profile->getProperty('id'));
+			$accounts = fb_get_accounts()->asArray();
+			
+			foreach($accounts as $acc)
+			{
+				if($acc->id == $fbid)
+				{
+					save_page_info($acc);
+				}
+			}
+		}
 	}
 }
 

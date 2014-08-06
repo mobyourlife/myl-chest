@@ -38,13 +38,14 @@ function get_page_info($page_fbid)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT p.is_fanpage, a.admin_name AS page_name, t.theme_name FROM myl_accounts AS a INNER JOIN myl_profiles AS p ON p.admin_uid = a.admin_uid LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE a.page_fbid = %s;", $page_fbid);
+	$sql = sprintf("SELECT p.is_fanpage, a.admin_name AS page_name, t.theme_name, a.admin_uid FROM myl_accounts AS a INNER JOIN myl_profiles AS p ON p.admin_uid = a.admin_uid LEFT JOIN myl_themes AS t ON t.theme_id = p.theme_id WHERE a.page_fbid = %s;", $page_fbid);
 	$res = mysqli_query($db, $sql);
 	$info = array();
 	$info['fbid'] = $page_fbid;
 	$info['is_fanpage'] = false;
 	$info['page_name'] = 'Nova Página';
 	$info['theme_name'] = null;
+	$info['admin_uid'] = 0;
 	
 	if (mysqli_num_rows($res) != 0)
 	{
@@ -52,6 +53,7 @@ function get_page_info($page_fbid)
 		$info['is_fanpage'] = $row['is_fanpage'];
 		$info['page_name'] = $row['page_name'];
 		$info['theme_name'] = $row['theme_name'];
+		$info['admin_uid'] = $row['admin_uid'];
 	}
 	
 	mysqli_close($db);
@@ -199,7 +201,7 @@ function get_midia_items($page_fbid, $nome_seo)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT photo_id, thumbs_url, source_url FROM myl_fb_photos WHERE album_id IN (SELECT album_id FROM myl_fb_albums WHERE page_fbid  = %s AND '%s' = 'fotos') ORDER BY photo_id DESC;", $page_fbid, $nome_seo);
+	$sql = sprintf("SELECT photo_id, thumbs_url, source_url FROM myl_fb_photos WHERE album_id IN (SELECT album_id FROM myl_fb_albums WHERE page_fbid = %s AND '%s' = 'fotos') ORDER BY photo_id DESC;", $page_fbid, $nome_seo);
 	$res = mysqli_query($db, $sql);
 	$items = array();
 	
@@ -226,6 +228,57 @@ function update_access_token($page_fbid, $access_token)
 	$db = db_conectar();
 	
 	$sql = sprintf("UPDATE myl_accounts SET access_token = '%s' WHERE admin_uid = %s;", $access_token, $page_fbid);
+	mysqli_query($db, $sql);
+	
+	mysqli_close($db);
+}
+
+function get_account_type($fb_uid)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT page_fbid FROM myl_accounts WHERE admin_uid = %s;", $fb_uid);
+	$res = mysqli_query($db, $sql);
+	$acctype = "profile";
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		$row = mysqli_fetch_assoc($res);
+		if ($row['page_fbid'] != $fb_uid)
+		{
+			$acctype = "fanpage";
+		}
+	}
+	
+	mysqli_close($db);
+	
+	return $acctype;
+}
+
+function get_page_fbid($admin_uid)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("SELECT page_fbid FROM myl_accounts WHERE admin_uid = %s;", $admin_uid);
+	$res = mysqli_query($db, $sql);
+	$page_fbid = $admin_uid;
+	
+	if (mysqli_num_rows($res) != 0)
+	{
+		$row = mysqli_fetch_assoc($res);
+		$page_fbid = $row['page_fbid'];
+	}
+	
+	mysqli_close($db);
+	
+	return $page_fbid;
+}
+
+function save_page_info($fb_account)
+{
+	$db = db_conectar();
+	
+	$sql = sprintf("UPDATE myl_accounts SET admin_name = '%s', access_token = '%s' WHERE page_fbid = %s;", $fb_account->name, $fb_account->access_token, $fb_account->id);
 	mysqli_query($db, $sql);
 	
 	mysqli_close($db);
