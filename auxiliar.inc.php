@@ -170,22 +170,15 @@ function downloadFile($url, $path)
 	return $ret;
 }
 
-function get_midia_params($path_info)
+function get_midia_params($qr)
 {
 	$ret = array();
 	$ret['categoria'] = null;
 	$ret['item_id'] = null;
 	
-	$arr = array_filter(explode('/', $path_info));
-	
-	if (count($arr) > 0)
+	if (isset($qr['categoria']))
 	{
-		$ret['categoria'] = $arr[1];
-		
-		if (count($arr) > 1)
-		{
-			$ret['item_id'] = $arr[(count($arr))];
-		}
+		$ret['categoria'] = $qr['categoria'];
 	}
 	
 	return $ret;

@@ -1,7 +1,7 @@
 <?php
 require_once "core.inc.php";
 
-$midia_params = get_midia_params($_SERVER['PATH_INFO']);
+$midia_params = get_midia_params($_GET);
 
 /* anotando a descrição completa do nome da categoria */
 $midia_categ = $midia_params['categoria'];
