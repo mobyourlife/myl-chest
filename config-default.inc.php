@@ -19,4 +19,7 @@ $mysql_password = "{mysql_password}";
 /* Endereço de email do suporte. */
 $email_suporte = "suporte@mobyourlife.com.br";
 
+/* Caminho para o Back Sync. */
+$myl_backsync = "/var/src/myl-backsync/app.js";
+
 ?>

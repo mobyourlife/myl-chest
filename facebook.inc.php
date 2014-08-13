@@ -72,6 +72,13 @@ if (isset($fb_session))
 		
 		unset($fb_session);
 	}
+	
+	/* Sempre sincroniza uma vez a cada login. */
+	if (isset($_SESSION['synced']) || $_SESSION['synced'] != true])
+	{
+		system(sprintf("node %s", $myl_backsync));
+		$_SESSION['synced'] = true;
+	}
 }
 
 function fb_get_accounts()
