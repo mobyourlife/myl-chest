@@ -26,9 +26,9 @@ if (count($matches) == 2)
 }
 
 /* Não consegiu determinar o subdomínio, redireciona para o site principal. */
-if (!isset($page_fbid))
+if (!isset($page_fbid) || $page_fbid == null || $page_fbid == 0)
 {
-	header("Location: http://www.mobyourlife.com.br");
+	header("Location: http://www.mobyourlife.com.br:81");
 	die();
 }
 
