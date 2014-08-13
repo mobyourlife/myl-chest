@@ -74,7 +74,7 @@ if (isset($fb_session))
 	}
 	
 	/* Sempre sincroniza uma vez a cada login. */
-	if (isset($_SESSION['synced']) || $_SESSION['synced'] != true])
+	if (isset($_SESSION['synced']) || $_SESSION['synced'] != true)
 	{
 		system(sprintf("node %s", $myl_backsync));
 		$_SESSION['synced'] = true;
