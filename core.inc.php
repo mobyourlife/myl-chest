@@ -13,16 +13,7 @@ preg_match($regex, $_SERVER['HTTP_HOST'], $matches);
 if (count($matches) == 2)
 {
 	$subdomain = $matches[1];
-	$storeid = sprintf("myl_%s", $subdomain);
-	
-	if (!isset($_SESSION[$storeid]))
-	{
-		$page_fbid = $_SESSION[$storeid] = get_subdomain_user($subdomain);
-	}
-	else
-	{
-		$page_fbid = $_SESSION[$storeid];
-	}
+	$page_fbid = get_subdomain_user($subdomain);
 }
 
 /* Não consegiu determinar o subdomínio, redireciona para o site principal. */
