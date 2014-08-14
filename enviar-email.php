@@ -22,7 +22,9 @@ if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['mensagem'])
 }
 
 $ret = array(
-	"enviado" => $enviado
+	"enviado" => $enviado,
+	"fbid" => $page_info['fbid'],
+	"email" => $email_admin
 );
 
 header("Content-type: application/json");

@@ -161,7 +161,7 @@ function get_email_admin($admin_uid)
 {
 	$db = db_conectar();
 	
-	$sql = sprintf("SELECT admin_email FROM myl_accounts WHERE admin_uid = %s;", $admin_uid);
+	$sql = sprintf("SELECT admin_email FROM myl_accounts WHERE admin_uid = %s OR page_fbid = %s;", $admin_uid, $admin_uid);
 	$res = mysqli_query($db, $sql);
 	$admin_email = null;
 	
